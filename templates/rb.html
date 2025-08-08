@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Book</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rb.css') }}">
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+</head>
+<body>
+    <header>
+        <h1>DishWhiz</h1>
+        <nav>
+            <a href="{{ url_for('recipe_routes.homepage') }}">Home</a>
+            <a href="{{ url_for('recipe_routes.recipes') }}">Recipes</a>
+            <a href="{{ url_for('recipe_routes.ingredients') }}">Ingredients</a>
+            <!-- <a href="{{ url_for('auth_routes.login') }}">Login</a> -->
+        </nav>
+                
+        <input type="text" id="searchBar" placeholder="Search Recipes..." onkeyup="searchRecipes()">
+        <!-- <div id="recipeResults" class="recipe-container"></div>  -->
+
+        <!-- <a href="{{ url_for('recipe_routes.profile') }}">
+            <img src="{{ url_for('static', filename='images/profile-icon.png') }}" alt="Profile" />
+        </a> -->
+        <!-- Correct link using Flask url_for -->
+        <a href="{{ url_for('recipe_routes.profile') }}">Profile</a>
+
+    </header>    
+
+    <main>
+        <div id="recipeResults" class="recipe-container"></div> 
+
+        <section id="featured" class="featured-section">
+            <h2>Featured Recipes</h2>
+            <div class="recipe-container">
+                <div class="recipe-card">
+                    <img src="/static/images/spaghetti_carbonara.jpg" alt="Spaghetti Carbonara">
+                    <h3>Spaghetti Carbonara</h3>
+                    <p>Creamy spaghetti with eggs, pancetta, Parmesan cheese, and black pepper.</p>
+                    <a href="{{ url_for('recipe_routes.carbonara_recipe') }}">
+                        <button class="recipe-btn">View Recipe</button>
+                    </a>
+                </div>                
+                <div class="recipe-card">
+                    <img src="/static/images/stirfry.jpg" alt="Recipe 2">
+                    <h3>Chicken Curry</h3>
+                    <p>A flavorful and spicy Indian curry made with tender chicken pieces.</p>
+                    <a href="{{ url_for('recipe_routes.chicken_recipe') }}">
+                        <button class="recipe-btn">View Recipe</button>
+                    </a>
+                </div>
+                <div class="recipe-card">
+                    <img src="/static/images/LavaCake.jpg" alt="Recipe 3">
+                    <h3>Chocolate Lava Cake</h3>
+                    <p>A rich and decadent dessert with a gooey, molten chocolate center.</p>
+                    <a href="{{ url_for('recipe_routes.chocolatelavacake_recipe') }}">
+                        <button class="recipe-btn">View Recipe</button>
+                    </a>
+                </div>
+                <div class="recipe-card">
+                    <img src="/static/images/CaesarSalad.jpg" alt="Recipe 4">
+                    <h3>Caesar Salad</h3>
+                    <p>A fresh and crunchy salad with romaine lettuce, croutons, and Caesar dressing.</p>
+                    <a href="{{ url_for('recipe_routes.caesarSalad_recipe') }}">
+                        <button class="recipe-btn">View Recipe</button>
+                    </a>
+                </div>
+            </div>
+        </section>
+    
+        <section id="cuisines" class="cuisines-section">
+            <h2>Cuisines</h2>
+            <div class="cuisine-container">
+                <!-- Cuisine Card 1 -->
+                <div class="cuisine-card">
+                    <img src="/static/images/italian.jpg" alt="Italian Cuisine">
+                    <h3>Italian</h3>
+                    <p>Pasta, pizza, and more – explore the rich flavors of Italy.</p>
+                    <a href="{{ url_for('recipe_routes.italian_cuisine') }}" class="view-more-button">View</a>
+                </div>
+        
+                <!-- Cuisine Card 2 -->
+                <div class="cuisine-card">
+                    <img src="/static/images/mexican.jpg" alt="Mexican Cuisine">
+                    <h3>Mexican</h3>
+                    <p>Spice up your meals with tacos, enchiladas, and more.</p>
+                    <a href="{{ url_for('recipe_routes.mexican_cuisine') }}" class="view-more-button">View</a>
+                </div>
+        
+                <!-- Cuisine Card 3 -->
+                <div class="cuisine-card">
+                    <img src="/static/images/indian.jpg" alt="Indian Cuisine">
+                    <h3>Indian</h3>
+                    <p>Enjoy the bold and aromatic flavors of India.</p>
+                    <a href="{{ url_for('recipe_routes.indian_cuisine') }}" class="view-more-button">View</a>
+                </div>
+        
+                <!-- Cuisine Card 4 -->
+                <div class="cuisine-card">
+                    <img src="/static/images/japanese.jpg" alt="Japanese Cuisine">
+                    <h3>Japanese</h3>
+                    <p>Savor the delicate and refined tastes of Japanese cuisine.</p>
+                    <a href="{{ url_for('recipe_routes.japanese_cuisine') }}" class="view-more-button">View</a>
+                </div>
+        
+                <!-- Cuisine Card 5 -->
+                <div class="cuisine-card">
+                    <img src="/static/images/french.jpg" alt="French Cuisine">
+                    <h3>French</h3>
+                    <p>Indulge in the elegance and sophistication of French cooking.</p>
+                    <a href="{{ url_for('recipe_routes.french_cuisine') }}" class="view-more-button">View</a>
+                </div>
+        
+                <!-- Cuisine Card 6 -->
+                <div class="cuisine-card">
+                    <img src="/static/images/chinese.jpg" alt="Chinese Cuisine">
+                    <h3>Chinese</h3>
+                    <p>Discover the rich and diverse flavors of Chinese cuisine.</p>
+                    <a href="{{ url_for('recipe_routes.chinese_cuisine') }}" class="view-more-button">View</a>
+                </div>
+            </div>
+            <!-- <button id="view-more-cuisines">View More</button> -->
+        </section>
+
+        <section id="mealTypes" class="meal-types-section">
+            <h2>Meal Types</h2>
+            <div class="meal-type-container">
+                <a href="{{ url_for('recipe_routes.breakfast') }}" class="meal-type-card">
+                    <img src="/static/images/breakfast.jpg" alt="Breakfast">
+                    <h3>Breakfast</h3>
+                </a>
+                <a href="{{ url_for('recipe_routes.lunch') }}" class="meal-type-card">
+                    <img src="/static/images/lunch.jpg" alt="Lunch">
+                    <h3>Lunch</h3>
+                </a>
+                <a href="{{ url_for('recipe_routes.dinner') }}" class="meal-type-card">
+                    <img src="/static/images/dinner.jpg" alt="Dinner">
+                    <h3>Dinner</h3>
+                </a>
+                <a href="{{ url_for('recipe_routes.desserts') }}" class="meal-type-card">
+                    <img src="/static/images/desserts.jpg" alt="Desserts">
+                    <h3>Desserts</h3>
+                </a>
+                <a href="{{ url_for('recipe_routes.brunch') }}" class="meal-type-card">
+                    <img src="/static/images/brunch.jpg" alt="Brunch">
+                    <h3>Brunch</h3>
+                </a>
+                <a href="{{ url_for('recipe_routes.snacks') }}" class="meal-type-card">
+                    <img src="/static/images/snacks.jpg" alt="Snacks">
+                    <h3>Snacks</h3>
+                </a>
+            </div>
+        </section>               
+    </main>
+
+    <!-- <footer>
+        <p>&copy; 2024 My Recipe Book</p>
+    </footer> -->
+
+    <script src="{{ url_for('static', filename='js/rb.js') }}"></script>
+    {% if session['user'] %}
+    <p>Welcome, {{ session['user']['username'] }}!</p>
+    {% endif %}
+
+</body>
+</html>

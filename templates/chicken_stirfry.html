@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicken Stir Fry Recipe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rb.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Chicken Stir Fry Recipe</h1>
+        <nav>
+            <a href="{{ url_for('recipe_routes.homepage') }}">Home</a>
+            <a href="{{ url_for('recipe_routes.recipes') }}">Recipes</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="recipe-details">
+            <img src="{{ url_for('static', filename='images/stir-fry.jpg') }}" alt="Chicken Stir Fry">
+            <div class="feedback-section">
+                <div class="likes">
+                    <button class="like-btn" id="like-btn">
+                        <span id="like-count">22</span> Likes
+                    </button>
+                </div>
+                <div class="reviews">
+                    <div class="average-rating">
+                        <span>Average Rating: </span>
+                        <span id="stars"></span>
+                    </div>
+                    <div id="review-count">Based on 15 reviews</div>
+                </div>
+            </div>
+
+            <h2>Chicken Stir Fry</h2>
+            <p>This quick and healthy chicken stir fry is packed with fresh vegetables and tossed in a savory soy-garlic sauce. A perfect weeknight meal!</p>
+
+            <h3>Ingredients</h3>
+            <ul>
+                <li>2 chicken breasts, thinly sliced</li>
+                <li>2 tbsp soy sauce</li>
+                <li>1 tbsp oyster sauce</li>
+                <li>2 garlic cloves, minced</li>
+                <li>1 tbsp ginger, grated</li>
+                <li>1 bell pepper, sliced</li>
+                <li>1 cup broccoli florets</li>
+                <li>1 carrot, julienned</li>
+                <li>2 tbsp vegetable oil</li>
+                <li>1 tsp cornstarch + 2 tbsp water</li>
+                <li>Salt and pepper to taste</li>
+            </ul>
+
+            <h3>Instructions</h3>
+            <ol>
+                <li>In a bowl, mix soy sauce, oyster sauce, garlic, ginger, and cornstarch slurry. Set aside.</li>
+                <li>Heat oil in a large skillet or wok over medium-high heat.</li>
+                <li>Add chicken slices and stir-fry until cooked through. Remove and set aside.</li>
+                <li>Add vegetables to the skillet and cook for 3–4 minutes until just tender.</li>
+                <li>Return chicken to the skillet and pour sauce over. Stir until evenly coated and slightly thickened.</li>
+                <li>Serve hot with steamed rice or noodles.</li>
+            </ol>
+
+            <h3>Tips</h3>
+            <p>For a spicy kick, add chili flakes or sriracha to the sauce. Use sesame oil for extra flavor.</p>
+
+            <a href="{{ url_for('recipe_routes.recipes') }}">
+                <button class="back-btn">Back to Recipes</button>
+            </a>
+        </section>
+
+        <section class="recipe-feedback">
+            <div class="comments">
+                <h3>Comments</h3>
+                <div id="comment-section">
+                    <div class="comment-item"><strong>Alice</strong>: "So quick and tasty! Definitely adding to my dinner rotation."</div>
+                    <div class="comment-item"><strong>Tom</strong>: "Used zucchini instead of broccoli — still great!"</div>
+                </div>
+                <div class="comment-input">
+                    <h4>Leave a Comment</h4>
+                    <textarea id="comment-text" placeholder="Write your comment here..."></textarea>
+                    <button class="comment-btn" id="submit-comment">Submit Comment</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer><p>&copy; 2024 My Recipe Book</p></footer>
+
+    <script src="rb.js"></script>
+    <script>
+        document.getElementById('like-btn').addEventListener('click', () => {
+            const likeCount = document.getElementById('like-count');
+            likeCount.innerText = parseInt(likeCount.innerText) + 1;
+        });
+
+        document.getElementById('submit-comment').addEventListener('click', () => {
+            const text = document.getElementById('comment-text').value;
+            if (text.trim()) {
+                const newComment = document.createElement('div');
+                newComment.classList.add('comment-item');
+                newComment.innerHTML = `<strong>You</strong>: ${text}`;
+                document.getElementById('comment-section').appendChild(newComment);
+                document.getElementById('comment-text').value = '';
+            }
+        });
+
+        const totalRating = 66;
+        const totalReviews = 15;
+
+        function calculateRating(rating, totalReviews) {
+            const averageRating = rating / totalReviews;
+            const stars = document.getElementById('stars');
+            stars.innerHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const star = document.createElement('span');
+                star.textContent = i <= Math.floor(averageRating) ? '★' : '☆';
+                stars.appendChild(star);
+            }
+        }
+
+        calculateRating(totalRating, totalReviews);
+    </script>
+</body>
+</html>

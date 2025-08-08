@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage - My Recipe Book</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to DishWhiz</h1>
+        <nav>
+            <ul>
+                <a href="{{ url_for('auth_routes.register') }}" class="btn-signup">Sign Up</a>
+                <a href="{{ url_for('auth_routes.login') }}" class="btn-login">Login</a>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="hero">
+            <h2>Discover Delicious Recipes</h2>
+            <p>Explore our collection of easy and delicious recipes for every occasion.</p>
+            <a href="{{ url_for('recipe_routes.recipes') }}" class="btn">Browse Recipes</a>
+        </section>
+        
+        <section id="about" class="container">
+            <h2 class="section-title">About This</h2>
+            <p>Welcome to <strong>DishWhiz</strong>, your go-to destination for exploring a wide array of culinary delights. Whether you’re a seasoned chef or just starting your cooking journey, this book offers something for everyone.</p>
+            
+            <h3>What You'll Find Inside:</h3>
+            
+            <ul>
+                <li><strong>Classic Comfort Foods:</strong> Dive into timeless recipes that bring warmth and nostalgia to your kitchen, from hearty stews to indulgent desserts.</li>
+                <li><strong>Quick & Easy Meals:</strong> Perfect for busy weeknights, these recipes require minimal ingredients and time, without sacrificing flavor.</li>
+                <li><strong>International Flavors:</strong> Explore the rich and diverse tastes of global cuisine, with dishes from Italy, Mexico, India, and beyond.</li>
+                <li><strong>Healthy Options:</strong> Discover nutritious and delicious recipes that cater to a variety of dietary needs, including vegetarian, vegan, and gluten-free.</li>
+                <li><strong>Special Occasion Dishes:</strong> Impress your guests with our selection of gourmet recipes, perfect for holidays, birthdays, and celebrations.</li>
+            </ul>
+            
+            <p>Our recipes are designed to be accessible, with step-by-step instructions and easily available ingredients. Whether you’re cooking for yourself, your family, or a gathering of friends, <strong>DishWhiz</strong> will inspire you to create meals that are both delicious and memorable.</p>
+        </section>
+        
+        <!-- Container 1 -->
+        <section class="container container-with-image">
+            <img src="{{ url_for('static', filename='images/food_waste.jpg') }}" alt="Minimise Food Waste" class="container-image">
+            <div class="container-text">
+                <h2 class="section-title">Minimise Food Waste and Save Money</h2>
+                <p>Are you tired of throwing away unused ingredients? AI-generated recipes put an end to food waste. They make the most of what's in your kitchen, ensuring that every item is used in a delicious dish.</p>
+                <p>Say goodbye to the guilt of wilted greens and overripe fruit. Embrace AI-powered sustainable cooking and reduce your carbon footprint, one recipe at a time.</p>
+                <p>On average, a family of four throws away $1,500 worth of food each year.</p>
+            </div>
+        </section>
+        
+        <!-- Container 2 -->
+        <section class="container container-with-image">
+            <img src="{{ url_for('static', filename='images/save_time.jpg') }}" alt="Save Time and Enjoy Convenience" class="container-image">
+            <div class="container-text">
+                <h2 class="section-title">Save Time and Enjoy Convenience</h2>
+                <p>With AI in your kitchen, meal preparation is easy. No more worrying about planning or finding ingredients. Our AI recipe generator saves time and is convenient.</p>
+                <p>The AI suggests recipes based on your available ingredients, so you don't have to spend more time in the supermarket. This means you have more time to enjoy the cooking process. Say goodbye to last-minute dashes to grab missing ingredients. Our platform has time-saving recipes that make cooking easier.</p>
+                <p>Whether you're a busy professional, a multitasking parent or someone who values efficiency, the convenience of AI is essential. Embark on a hassle-free culinary journey with AI as your trusted kitchen companion. Discover the world of easy cooking by relying on AI.</p>
+            </div>
+        </section>
+        
+        <!-- Container 3 -->
+        <section class="container container-with-image">
+            <img src="{{ url_for('static', filename='images/improve_skills.jpg') }}" alt="Improve Your Cooking Skills" class="container-image">
+            <div class="container-text">
+                <h2 class="section-title">Improve Your Cooking Skills</h2>
+                <p>Cooking is more than a task; it's a continual opportunity to learn. AI is your partner in the kitchen, helping you develop as a cook.</p>
+                <p>If you're new to cooking, AI offers easy-to-follow guidance to develop your abilities and boost your assurance. For experienced chefs, AI presents knowledgeable pointers and imaginative thoughts to elevate your dishes.</p>
+                <p>The flexibility of AI empowers you to discover new styles and skills, making cooking a thrilling journey. It's like having your own personal cooking guide in your kitchen, motivating you to become the chef you've always dreamed of being.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- <footer>
+        <p>&copy; 2024 My Recipe Book</p>
+    </footer> -->
+
+    <script src="{{ url_for('static', filename='js/homepage.js') }}"></script>
+</body>
+</html>

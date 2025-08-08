@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chocolate Lava Cake Recipe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rb.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Chocolate Lava Cake Recipe</h1>
+        <nav>
+            <a href="{{ url_for('recipe_routes.homepage') }}">Home</a>
+            <a href="{{ url_for('recipe_routes.recipes') }}">Recipes</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="recipe-details">
+            <img src="{{ url_for('static', filename='images/Lava_Cake.jpg') }}" alt="Chocolate Lava Cake">
+            <div class="feedback-section">
+                <div class="likes">
+                    <button class="like-btn" id="like-btn">
+                        <span id="like-count">18</span> Likes
+                    </button>
+                </div>
+                <div class="reviews">
+                    <div class="average-rating">
+                        <span>Average Rating: </span>
+                        <span id="stars"></span>
+                    </div>
+                    <div id="review-count">Based on 12 reviews</div>
+                </div>
+            </div>
+
+            <h2>Chocolate Lava Cake</h2>
+            <p>This decadent dessert features a rich, molten chocolate center and a soft cake exterior. Perfect for special occasions or whenever you're craving something indulgent.</p>
+
+            <h3>Ingredients</h3>
+            <ul>
+                <li>100g dark chocolate</li>
+                <li>100g unsalted butter</li>
+                <li>2 eggs</li>
+                <li>2 egg yolks</li>
+                <li>50g sugar</li>
+                <li>30g all-purpose flour</li>
+                <li>Butter and cocoa powder for ramekins</li>
+            </ul>
+
+            <h3>Instructions</h3>
+            <ol>
+                <li>Preheat oven to 220°C (425°F). Butter and dust ramekins with cocoa powder.</li>
+                <li>Melt chocolate and butter together until smooth. Let cool slightly.</li>
+                <li>In a separate bowl, whisk eggs, yolks, and sugar until pale and thick.</li>
+                <li>Fold in melted chocolate mixture and flour gently.</li>
+                <li>Pour batter into ramekins and bake for 10–12 minutes until edges are set but center is soft.</li>
+                <li>Let sit for 1 minute, then invert onto plates. Serve immediately.</li>
+            </ol>
+
+            <h3>Tips</h3>
+            <p>Do not overbake, or you'll lose the gooey center. Serve with vanilla ice cream for extra indulgence.</p>
+
+            <a href="{{ url_for('recipe_routes.recipes') }}">
+                <button class="back-btn">Back to Recipes</button>
+            </a>
+        </section>
+
+        <section class="recipe-feedback">
+            <div class="comments">
+                <h3>Comments</h3>
+                <div id="comment-section">
+                    <div class="comment-item"><strong>Emily</strong>: "Absolutely delicious, my whole family loved it!"</div>
+                    <div class="comment-item"><strong>James</strong>: "Added a pinch of chili – amazing combo with chocolate!"</div>
+                </div>
+                <div class="comment-input">
+                    <h4>Leave a Comment</h4>
+                    <textarea id="comment-text" placeholder="Write your comment here..."></textarea>
+                    <button class="comment-btn" id="submit-comment">Submit Comment</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer><p>&copy; 2024 My Recipe Book</p></footer>
+
+    <script src="rb.js"></script>
+    <script>
+        document.getElementById('like-btn').addEventListener('click', () => {
+            const likeCount = document.getElementById('like-count');
+            likeCount.innerText = parseInt(likeCount.innerText) + 1;
+        });
+
+        document.getElementById('submit-comment').addEventListener('click', () => {
+            const text = document.getElementById('comment-text').value;
+            if (text.trim()) {
+                const newComment = document.createElement('div');
+                newComment.classList.add('comment-item');
+                newComment.innerHTML = `<strong>You</strong>: ${text}`;
+                document.getElementById('comment-section').appendChild(newComment);
+                document.getElementById('comment-text').value = '';
+            }
+        });
+
+        const totalRating = 53;
+        const totalReviews = 12;
+
+        function calculateRating(rating, totalReviews) {
+            const averageRating = rating / totalReviews;
+            const stars = document.getElementById('stars');
+            stars.innerHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const star = document.createElement('span');
+                star.textContent = i <= Math.floor(averageRating) ? '★' : '☆';
+                stars.appendChild(star);
+            }
+        }
+
+        calculateRating(totalRating, totalReviews);
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snacks Recipes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rb.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Snacks Recipes</h1>
+        <nav>
+            <li><a href="{{ url_for('recipe_routes.homepage') }}">Home</a></li>
+            <li><a href="{{ url_for('recipe_routes.recipes') }}">Recipes</a></li>
+        </nav>
+    </header>
+
+    <main>
+        <section id="snacks" class="recipe-section">
+            <h2>Featured Recipes</h2>
+            <div class="recipe-container">
+                <!-- Snacks Recipes -->
+                <div class="recipe-card">
+                    <img src="nachos.jpg" alt="Nachos">
+                    <h3>Nachos</h3>
+                    <p>Crispy nachos topped with melted cheese, salsa, and jalapeños.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <div class="recipe-card">
+                    <img src="popcorn.jpg" alt="Popcorn">
+                    <h3>Popcorn</h3>
+                    <p>Light and fluffy popcorn with your choice of seasoning.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <div class="recipe-card">
+                    <img src="hummus.jpg" alt="Hummus">
+                    <h3>Hummus</h3>
+                    <p>A creamy and flavorful hummus served with pita chips or vegetables.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <div class="recipe-card">
+                    <img src="fruit-skewers.jpg" alt="Fruit Skewers">
+                    <h3>Fruit Skewers</h3>
+                    <p>Fresh and colorful fruit skewers, perfect for a light snack.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <!-- <div class="recipe-card">
+                    <img src="cheese-platter.jpg" alt="Cheese Platter">
+                    <h3>Cheese Platter</h3>
+                    <p>A selection of cheeses, crackers, and fruits for a tasty snack.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div> -->
+            </div>
+
+            <!-- Other Meal Types -->
+            <h2>Explore More</h2>
+            <div class="recipe-container">
+                <a href="breakfast.html" class="meal-type-card">
+                    <img src="breakfast.jpg" alt="Breakfast">
+                    <h3>Breakfast</h3>
+                </a>
+                <a href="lunch.html" class="meal-type-card">
+                    <img src="lunch.jpg" alt="Lunch">
+                    <h3>Lunch</h3>
+                </a>
+                <a href="dinner.html" class="meal-type-card">
+                    <img src="dinner.jpg" alt="Dinner">
+                    <h3>Dinner</h3>
+                </a>
+                <a href="desserts.html" class="meal-type-card">
+                    <img src="desserts.jpg" alt="Desserts">
+                    <h3>Desserts</h3>
+                </a>
+                <a href="brunch.html" class="meal-type-card">
+                    <img src="brunch.jpg" alt="Brunch">
+                    <h3>Brunch</h3>
+                </a>
+                <!-- <a href="snacks.html" class="meal-type-card">
+                    <img src="snacks.jpg" alt="Snacks">
+                    <h3>Snacks</h3>
+                </a> -->
+            </div>
+        </section>
+    </main>
+
+    <!-- <footer>
+        <p>&copy; 2024 My Recipe Book</p>
+    </footer> -->
+
+    <script src="/static/js/rb.js"></script>
+</body>
+</html>

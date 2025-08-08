@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Preview</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rb.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Recipe Preview</h1>
+        <nav>
+            <a href="{{ url_for('recipe_routes.homepage') }}">Home</a>
+            <a href="{{ url_for('recipe_routes.recipes') }}">Recipes</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="recipeDetails">
+            <h2 id="recipeTitle">{{ recipe.title }}</h2>
+            <p><strong>Cuisine:</strong> {{ recipe.cuisine }}</p>
+            <p><strong>Meal Type:</strong> {{ recipe.meal_type }}</p>
+            <p><strong>Difficulty:</strong> {{ recipe.difficulty }}</p>
+            <p><strong>Calories:</strong> {{ recipe.calories }}</p>
+            <p><strong>Prep Time:</strong> {{ recipe.prep_time }}</p>        
+
+            <h3>Ingredients:</h3>
+            <ul id="recipeIngredients">
+                {% for ingredient in recipe.ingredients %}
+                    <li>{{ ingredient }}</li>
+                {% endfor %}
+            </ul>
+
+            <h3>Instructions:</h3>
+            <ol id="recipeInstructions">
+                {% for step in recipe.instructions %}
+                    <li>{{ step }}</li>
+                {% endfor %}
+            </ol>
+
+            <a href="/recipe/preview">Generate Another Recipe</a>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 DishWhiz</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            const recipe = JSON.parse(sessionStorage.getItem('currentRecipe'));
+        
+            if (!recipe || !recipe.title) {
+                document.getElementById('recipeDetails').innerHTML = "<p>No recipe found.</p>";
+                return;
+            }
+        
+            // Set initial title and description (before full generation)
+            document.getElementById('recipeTitle').innerText = recipe.title || "Untitled Recipe";
+            document.getElementById('recipeDescription').innerText = recipe.description || "No description available.";
+        
+            try {
+                // Fetch AI-generated full recipe details from backend
+                const response = await fetch(`/api/recipe/ai_generate?title=${encodeURIComponent(recipe.title)}`);
+                const fullRecipe = await response.json();
+        
+                // Populate ingredients
+                const ingredientsList = document.getElementById('recipeIngredients');
+                if (fullRecipe.ingredients && fullRecipe.ingredients.length > 0) {
+                    fullRecipe.ingredients.forEach(ingredient => {
+                        const li = document.createElement('li');
+                        li.textContent = ingredient;
+                        ingredientsList.appendChild(li);
+                    });
+                } else {
+                    ingredientsList.innerHTML = "<li>No ingredients available.</li>";
+                }
+        
+                // Populate instructions
+                const instructionsList = document.getElementById('recipeInstructions');
+                if (fullRecipe.instructions && fullRecipe.instructions.length > 0) {
+                    fullRecipe.instructions.forEach(instruction => {
+                        const li = document.createElement('li');
+                        li.textContent = instruction;
+                        instructionsList.appendChild(li);
+                    });
+                } else {
+                    instructionsList.innerHTML = "<li>Instructions unavailable.</li>";
+                }
+        
+            } catch (error) {
+                console.error('Error fetching AI recipe details:', error);
+                document.getElementById('recipeDetails').innerHTML = "<p>Error loading recipe.</p>";
+            }
+        });
+        </script>
+        
+    <!-- <script>
+        
+        // Fetch recipe data from sessionStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const recipe = JSON.parse(sessionStorage.getItem('currentRecipe'));
+            
+            if (!recipe) {
+                document.getElementById('recipeDetails').innerHTML = "<p>No recipe found.</p>";
+                return;
+            }
+
+            // Populate title and description
+            document.getElementById('recipeTitle').innerText = recipe.title || "Untitled Recipe";
+            document.getElementById('recipeDescription').innerText = recipe.description || "No description available.";
+
+            // Populate ingredients
+            const ingredientsList = document.getElementById('recipeIngredients');
+            if (recipe.ingredients && recipe.ingredients.length > 0) {
+                recipe.ingredients.forEach(ingredient => {
+                    const li = document.createElement('li');
+                    li.textContent = ingredient;
+                    ingredientsList.appendChild(li);
+                });
+            } else {
+                ingredientsList.innerHTML = "<li>No ingredients available.</li>";
+            }
+
+            // Populate instructions
+            const instructionsList = document.getElementById('recipeInstructions');
+            if (recipe.instructions && recipe.instructions.length > 0) {
+                recipe.instructions.forEach(instruction => {
+                    const li = document.createElement('li');
+                    li.textContent = instruction;
+                    instructionsList.appendChild(li);
+                });
+            } else {
+                instructionsList.innerHTML = "<li>Instructions unavailable.</li>";
+            }
+        });
+    </script> -->
+</body>
+</html>

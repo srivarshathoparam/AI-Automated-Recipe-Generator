@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Recipes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rb.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Indian Recipes</h1>
+        <nav>
+            <a href="{{ url_for('recipe_routes.homepage') }}">Home</a>
+            <a href="{{ url_for('recipe_routes.recipes') }}">Recipes</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="recipe-section">
+            <h2>Featured Recipes</h2>
+            <div class="recipe-container">
+                <div class="recipe-card">
+                    <img src="/static/images/butter-chicken.jpg" alt="Butter Chicken">
+                    <h3>Butter Chicken</h3>
+                    <p>Creamy tomato-based curry with tender chicken pieces.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <div class="recipe-card">
+                    <img src="/static/images/biryani.jpg" alt="Biryani">
+                    <h3>Biryani</h3>
+                    <p>Fragrant spiced rice layered with marinated meat or veggies.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <div class="recipe-card">
+                    <img src="/static/images/chole.jpg" alt="Chole">
+                    <h3>Chole</h3>
+                    <p>Spicy chickpea curry served with bhature or rice.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/js/rb.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rb.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Login</h1>
+        <nav>
+            <a href="{{ url_for('recipe_routes.homepage') }}">Home</a>
+            <a href="{{ url_for('recipe_routes.recipes') }}">Recipes</a>
+            <a href="{{ url_for('recipe_routes.ingredients') }}">Ingredients</a>
+        </nav>
+    </header>    
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <main>
+        <section id="login-section">
+            <form id="login-form" action="{{ url_for('auth_routes.login') }}" method="POST">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+
+           
+        </section>
+    </main>
+</body>
+</html>

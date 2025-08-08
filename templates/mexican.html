@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mexican Recipes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rb.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Mexican Recipes</h1>
+        <nav>
+            <a href="{{ url_for('recipe_routes.homepage') }}">Home</a>
+            <a href="{{ url_for('recipe_routes.recipes') }}">Recipes</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="recipe-section">
+            <h2>Featured Recipes</h2>
+            <div class="recipe-container">
+                <div class="recipe-card">
+                    <img src="/static/images/tacos.jpg" alt="Tacos">
+                    <h3>Tacos</h3>
+                    <p>Soft corn tortillas filled with seasoned meat and toppings.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <div class="recipe-card">
+                    <img src="/static/images/enchiladas.jpg" alt="Enchiladas">
+                    <h3>Enchiladas</h3>
+                    <p>Rolled tortillas with filling, covered in chili sauce.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <div class="recipe-card">
+                    <img src="/static/images/guacamole.jpg" alt="Guacamole">
+                    <h3>Guacamole</h3>
+                    <p>Creamy avocado dip with lime, onion, and cilantro.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/js/rb.js"></script>
+</body>
+</html>

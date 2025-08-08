@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rb.css') }}">
+    <style>
+        /* General Page Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        
+        header {
+            background-color: #d86a8f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+        }
+        
+        main {
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .user-interactions {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .likes-section,
+        .comments-section,
+        .additional-info {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            main {
+                padding: 20px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Profile</h1>
+        <nav>
+            <a href="{{ url_for('recipe_routes.homepage') }}">Home</a>
+            <a href="{{ url_for('recipe_routes.recipes') }}">Recipes</a>
+            <a href="{{ url_for('recipe_routes.ingredients') }}">Ingredients</a>
+            <a href="{{ url_for('auth_routes.login') }}" class="logout-link">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="profile-section">
+            <div class="profile-card">
+                <!-- Profile Picture -->
+                <div class="profile-pic-container">
+                    <img src="{{ url_for('static', filename='images/profile-pic.jpg') }}" alt="Profile Picture" class="profile-pic" id="profile-pic">
+                </div>
+
+                <!-- User Information -->
+                <div class="profile-info">
+                    <h2 id="username">Hi, {{ username }}</h2>
+                    <p><strong>Member Since:</strong> <span id="member-since">January 2024</span></p>
+                    <button class="edit-profile-btn" onclick="window.location.href='{{ url_for('auth_routes.profile_edit') }}';">Edit Profile</button>
+                </div>
+            </div>
+
+            <!-- User Interactions -->
+            <div class="user-interactions">
+                <div class="likes-section">
+                    <h3>Liked Recipes</h3>
+                    <ul id="liked-recipes">
+                        {% for recipe in liked_recipes %}
+                        <li><a href="{{ url_for('recipe_details', recipe_id=recipe.id) }}">{{ recipe.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="comments-section">
+                    <h3>Your Comments</h3>
+                    <ul id="user-comments">
+                        {% for comment in user_comments %}
+                        <li><strong>On {{ comment.recipe_name }}:</strong> "{{ comment.text }}"</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Allergies & Favorites -->
+                <div class="additional-info">
+                    <h3>Allergies</h3>
+                    <p id="allergies">{{ allergies if allergies else 'None' }}</p>
+
+                    <h3>Favorite Recipes</h3>
+                    <p id="favorite-recipes">{{ favorite_recipes if favorite_recipes else 'None' }}</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Recipe Book</p>
+    </footer>
+
+    <script>
+        // Logout Function
+        document.querySelector('.logout-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            fetch("{{ url_for('login.logout') }}", { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        localStorage.clear();  // Clear frontend session
+                        window.location.replace("{{ url_for('auth_routes.login') }}");
+                    }
+                });
+        });
+    </script>
+</body>
+</html>

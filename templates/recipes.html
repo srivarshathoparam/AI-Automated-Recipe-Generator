@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Possible Recipes</title>
+    <link rel="stylesheet" href="D:\IOMP-B11\backend\static\css\rb.css">
+</head>
+<body>
+    <header>
+        <h1>Possible Recipes</h1>
+        <nav>
+            <a href="{{ url_for('homepage') }}">Home</a>
+            <a href="{{ url_for('recipes') }}">Recipes</a>
+            <a href="{{ url_for('ingredients') }}">Ingredients</a>
+            <a href="{{ url_for('auth_routes.login') }}">Login</a>
+        </nav>
+        
+    </header>
+
+    <main>
+        <section id="recipe-results" class="recipe-results">
+            <!-- Recipe cards will be dynamically generated here -->
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Parse the query parameters to get selected ingredients
+            const params = new URLSearchParams(window.location.search);
+            const ingredients = params.get('ingredients') ? params.get('ingredients').split(',') : [];
+
+            if (ingredients.length === 0) {
+                document.getElementById('recipe-results').innerHTML = '<p>No ingredients selected. Please go back and select ingredients.</p>';
+                return;
+            }
+
+            // Mock function to simulate fetching recipes based on selected ingredients
+            function fetchRecipes(ingredients) {
+                const mockRecipes = [
+                    { name: 'Tomato Soup', ingredients: ['Tomato', 'Onion', 'Garlic'], image: 'tomato_soup.jpg' },
+                    { name: 'Chicken Curry', ingredients: ['Chicken', 'Onion', 'Garlic', 'Cumin'], image: 'chicken_curry.jpg' },
+                    { name: 'Garlic Chicken', ingredients: ['Chicken', 'Garlic'], image: 'garlic_chicken.jpg' },
+                    { name: 'Veggie Salad', ingredients: ['Carrot', 'Broccoli', 'Tomato', 'Onion'], image: 'veggie_salad.jpg' },
+                    { name: 'Beef Stew', ingredients: ['Beef', 'Onion', 'Garlic', 'Pepper'], image: 'beef_stew.jpg' },
+                    { name: 'Lemon Chicken', ingredients: ['Chicken', 'Lemon', 'Garlic'], image: 'lemon_chicken.jpg' },
+                    { name: 'Apple Pie', ingredients: ['Apple', 'Butter', 'Cinnamon'], image: 'apple_pie.jpg' },
+                    { name: 'Grilled Fish', ingredients: ['Fish', 'Lemon', 'Pepper'], image: 'grilled_fish.jpg' },
+                    { name: 'Fruit Smoothie', ingredients: ['Banana', 'Milk', 'Yogurt'], image: 'fruit_smoothie.jpg' },
+                    { name: 'Cheese Omelette', ingredients: ['Eggs', 'Cheese', 'Butter'], image: 'cheese_omelette.jpg' },
+                    { name: 'Spaghetti Bolognese', ingredients: ['Beef', 'Tomato', 'Onion', 'Garlic'], image: 'spaghetti_bolognese.jpg' },
+                    { name: 'Pancakes', ingredients: ['Flour', 'Eggs', 'Milk', 'Butter'], image: 'pancakes.jpg' },
+                    { name: 'Tuna Salad', ingredients: ['Tuna', 'Lettuce', 'Tomato', 'Onion'], image: 'tuna_salad.jpg' },
+                    { name: 'Vegetable Stir Fry', ingredients: ['Broccoli', 'Carrot', 'Garlic', 'Pepper'], image: 'vegetable_stir_fry.jpg' },
+                    { name: 'Mango Smoothie', ingredients: ['Mango', 'Yogurt', 'Honey'], image: 'mango_smoothie.jpg' },
+                    { name: 'Chocolate Cake', ingredients: ['Flour', 'Cocoa Powder', 'Butter', 'Eggs'], image: 'chocolate_cake.jpg' },
+                    { name: 'Chicken Alfredo', ingredients: ['Chicken', 'Cream', 'Parmesan', 'Garlic'], image: 'chicken_alfredo.jpg' },
+                    { name: 'Greek Salad', ingredients: ['Tomato', 'Cucumber', 'Feta Cheese', 'Olives'], image: 'greek_salad.jpg' },
+                    { name: 'Caprese Salad', ingredients: ['Tomato', 'Mozzarella', 'Basil', 'Olive Oil'], image: 'caprese_salad.jpg' },
+                    { name: 'Stuffed Peppers', ingredients: ['Pepper', 'Rice', 'Beef', 'Tomato'], image: 'stuffed_peppers.jpg' },
+                    { name: 'Shrimp Tacos', ingredients: ['Shrimp', 'Tortillas', 'Lime', 'Avocado'], image: 'shrimp_tacos.jpg' },
+                    { name: 'Chicken Noodle Soup', ingredients: ['Chicken', 'Carrot', 'Celery', 'Onion'], image: 'chicken_noodle_soup.jpg' },
+                    { name: 'Margherita Pizza', ingredients: ['Tomato', 'Mozzarella', 'Basil', 'Olive Oil'], image: 'margherita_pizza.jpg' },
+                    { name: 'Caesar Salad', ingredients: ['Lettuce', 'Croutons', 'Parmesan', 'Caesar Dressing'], image: 'caesar_salad.jpg' },
+                    { name: 'BBQ Ribs', ingredients: ['Pork', 'BBQ Sauce', 'Garlic', 'Pepper'], image: 'bbq_ribs.jpg' },
+                    { name: 'Baked Salmon', ingredients: ['Salmon', 'Lemon', 'Dill', 'Garlic'], image: 'baked_salmon.jpg' },
+                    { name: 'Beef Tacos', ingredients: ['Beef', 'Tortillas', 'Cheese', 'Tomato'], image: 'beef_tacos.jpg' },
+                    { name: 'Falafel Wrap', ingredients: ['Falafel', 'Tortilla', 'Lettuce', 'Tomato'], image: 'falafel_wrap.jpg' }
+                ];
+
+                // Filter recipes that match all selected ingredients
+                const filteredRecipes = mockRecipes.filter(recipe => 
+                    ingredients.every(ingredient => recipe.ingredients.includes(ingredient))
+                );
+
+                return filteredRecipes;
+            }
+
+            // Fetch recipes and display them
+            const recipes = fetchRecipes(ingredients);
+            displayRecipes(recipes);
+        });
+
+        function displayRecipes(recipes) {
+            const resultsContainer = document.getElementById('recipe-results');
+
+            if (recipes.length === 0) {
+                resultsContainer.innerHTML = '<p style="color: #ffffff; text-align: center;">No recipes found for the selected ingredients.</p>';
+                return;
+            }
+
+
+            recipes.forEach(recipe => {
+                const recipeCard = document.createElement('div');
+                recipeCard.classList.add('recipe-card');
+
+                recipeCard.innerHTML = `
+                    <img src="${recipe.image}" alt="${recipe.name}">
+                    <h3>${recipe.name}</h3>
+                    <p>Ingredients: ${recipe.ingredients.join(', ')}</p>
+                `;
+
+                resultsContainer.appendChild(recipeCard);
+            });
+        }
+    </script>
+</body>
+</html>

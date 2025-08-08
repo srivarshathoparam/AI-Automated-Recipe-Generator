@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Recipe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rb.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Recipe Preview</h1>
+        <nav>
+            <a href="{{ url_for('recipe_routes.homepage') }}">Home</a>
+            <a href="{{ url_for('recipe_routes.recipes') }}">Recipes</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Generate a Recipe</h1>
+        <form method="POST" action="/recipe/preview">
+            <label for="ingredients">Ingredients (comma separated):</label><br>
+            <input type="text" id="ingredients" name="ingredients"><br><br>
+
+            <label for="preferences">Preferences (optional):</label><br>
+            <input type="text" id="preferences" name="preferences"><br><br>
+
+            <input type="submit" value="Generate Recipe">
+        </form>
+    </main>
+
+</body>
+</html>

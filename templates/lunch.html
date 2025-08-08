@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lunch Recipes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rb.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Lunch Recipes</h1>
+        <nav>
+            <li><a href="{{ url_for('recipe_routes.homepage') }}">Home</a></li>
+            <li><a href="{{ url_for('recipe_routes.recipes') }}">Recipes</a></li>
+        </nav>
+    </header>
+
+    <main>
+        <section id="lunch" class="recipe-section">
+            <h2>Featured Recipes</h2>
+            <div class="recipe-container">
+                <!-- Lunch Recipes -->
+                <div class="recipe-card">
+                    <img src="chicken-salad.jpg" alt="Chicken Salad">
+                    <h3>Chicken Salad</h3>
+                    <p>A healthy salad with grilled chicken and fresh vegetables.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <div class="recipe-card">
+                    <img src="sandwich.jpg" alt="Sandwich">
+                    <h3>Club Sandwich</h3>
+                    <p>A classic club sandwich with layers of meat, cheese, and veggies.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <div class="recipe-card">
+                    <img src="pasta.jpg" alt="Pasta">
+                    <h3>Caesar Pasta Salad</h3>
+                    <p>A creamy pasta salad with Caesar dressing and fresh veggies.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <!-- <div class="recipe-card">
+                    <img src="sushi.jpg" alt="Sushi">
+                    <h3>Sushi Rolls</h3>
+                    <p>Homemade sushi rolls with your choice of fillings.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div> -->
+                <div class="recipe-card">
+                    <img src="quiche.jpg" alt="Quiche">
+                    <h3>Quiche</h3>
+                    <p>A savory quiche with a variety of fillings and a flaky crust.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+            </div>
+
+            <!-- Other Meal Types -->
+            <h2>Explore More</h2>
+            <div class="recipe-container">
+                <a href="breakfast.html" class="meal-type-card">
+                    <img src="breakfast.jpg" alt="Breakfast">
+                    <h3>Breakfast</h3>
+                </a>
+                <!-- <a href="lunch.html" class="meal-type-card">
+                    <img src="lunch.jpg" alt="Lunch">
+                    <h3>Lunch</h3>
+                </a> -->
+                <a href="dinner.html" class="meal-type-card">
+                    <img src="dinner.jpg" alt="Dinner">
+                    <h3>Dinner</h3>
+                </a>
+                <a href="desserts.html" class="meal-type-card">
+                    <img src="desserts.jpg" alt="Desserts">
+                    <h3>Desserts</h3>
+                </a>
+                <a href="brunch.html" class="meal-type-card">
+                    <img src="brunch.jpg" alt="Brunch">
+                    <h3>Brunch</h3>
+                </a>
+                <a href="snacks.html" class="meal-type-card">
+                    <img src="snacks.jpg" alt="Snacks">
+                    <h3>Snacks</h3>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- <footer>
+        <p>&copy; 2024 My Recipe Book</p>
+    </footer> -->
+
+    <script src="/static/js/rb.js"></script>
+</body>
+</html>

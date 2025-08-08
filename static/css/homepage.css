@@ -1,0 +1,229 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #d86a8f;
+}
+
+header h1 {
+    margin: 0;
+    color: white;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #d86a8f;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+/* Style for Sign Up and Login buttons */
+.btn-signup,
+.btn-login {
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+    border: 2px solid #d86a8f;
+}
+
+.btn-signup {
+    background-color: #d86a8f;
+    color: white;
+}
+
+.btn-login {
+    background-color: #d86a8f;
+    color: white;
+}
+
+.btn-signup:hover {
+    background-color: white;
+    color: #d86a8f;
+}
+
+.btn-login:hover {
+    background-color: white;
+    color: #d86a8f;
+}
+
+
+main {
+    padding: 60px 20px 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+#hero {
+    background: #f396b5;
+    color: #fff;
+    padding: 60px 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+#hero h2 {
+    margin: 0 0 10px;
+}
+
+#hero p {
+    margin: 0 0 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #fff;
+    color: #d86a8f;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #f4f4f4;
+}
+
+#about {
+    margin-bottom: 20px;
+}
+
+.container {
+    background: #fff;
+    width: 100%; /* Makes the containers span the full width of the screen */
+    padding: 40px 20px; /* Provides consistent spacing inside the container */
+    box-sizing: border-box; /* Includes padding in the total width calculation */
+    margin: 20px 0;
+    align-items: center; /* Centers content vertically */
+    justify-content: space-between; /* Adds equal spacing between image and text */
+    gap: 20px;
+    border-radius: 8px;
+}
+
+.container h2.section-title {
+    font-size: 1.8em;
+    color: #d86a8f;
+    margin-bottom: 10px;
+}
+
+.container-with-image {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.container-with-image img.container-image {
+    max-height: 250px; /* Limits the image height to prevent it from overpowering the text */
+    width: auto; /* Ensures the image scales proportionally */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow for better aesthetics */
+}
+
+.container-with-image .container-text {
+    flex: 1; /* Ensures the text occupies the remaining space */
+    padding: 20px;
+}
+
+/* Responsive Design for Smaller Screens */
+@media screen and (max-width: 768px) {
+    .container-with-image {
+        flex-direction: column; /* Stacks image and text vertically on smaller screens */
+        text-align: center;
+    }
+    .container-with-image img.container-image {
+        max-height: 200px; /* Reduces image size further on smaller screens */
+        width: 100%; /* Ensures the image fits within the container width */
+    }
+    .container-with-image .container-text {
+        width: 100%; /* Makes text occupy full width */
+    }
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #d86a8f;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+ul li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+strong {
+    color: #be7990;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+
+
+#search {
+    text-align: center;
+}
+
+#search input {
+    padding: 10px;
+    font-size: 1em;
+    width: 80%;
+    max-width: 400px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* footer {
+    background: #d86a8f;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+} */

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spaghetti Carbonara Recipe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rb.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Spaghetti Carbonara Recipe</h1>
+        <nav>
+            <a href="{{ url_for('recipe_routes.homepage') }}">Home</a>
+            <a href="{{ url_for('recipe_routes.recipes') }}">Recipes</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="recipe-details">
+            <img src="{{ url_for('static', filename='images/spaghetti_carbonara.jpg') }}" alt="Spaghetti Carbonara">
+            <!-- Likes and Reviews Section -->
+            <div class="feedback-section">
+                <!-- Likes Section -->
+                <div class="likes">
+                    <button class="like-btn" id="like-btn">
+                        <span id="like-count">12</span> Likes
+                    </button>
+                </div>
+
+                <!-- Reviews Section -->
+                <div class="reviews">
+                    <div class="average-rating">
+                        <span>Average Rating: </span>
+                        <span id="stars"></span>
+                    </div>
+                    <div id="review-count">Based on 10 reviews</div>
+                </div>
+            </div>
+
+            <h2>Spaghetti Carbonara</h2>
+            <p>This traditional Italian pasta dish is made with simple ingredients like eggs, Parmesan cheese, pancetta, and black pepper. It's creamy, flavorful, and perfect for any occasion.</p>
+
+            <h3>Ingredients</h3>
+            <ul>
+                <li>200g spaghetti</li>
+                <li>100g pancetta or bacon</li>
+                <li>2 large eggs</li>
+                <li>50g grated Parmesan cheese</li>
+                <li>Black pepper to taste</li>
+                <li>Salt to taste</li>
+                <li>1 garlic clove (optional)</li>
+            </ul>
+
+            <h3>Instructions</h3>
+            <ol>
+                <li>Boil the spaghetti in salted water until al dente. Drain and set aside.</li>
+                <li>In a pan, cook the pancetta or bacon until crispy. Optionally, add a crushed garlic clove for flavor and remove it after cooking.</li>
+                <li>In a bowl, whisk together the eggs, grated Parmesan cheese, and a generous amount of black pepper.</li>
+                <li>Toss the hot spaghetti with the pancetta and its fat in the pan. Remove from heat and quickly stir in the egg mixture. The residual heat will cook the eggs, creating a creamy sauce.</li>
+                <li>Serve immediately with extra Parmesan and black pepper on top.</li>
+            </ol>
+
+            <h3>Tips</h3>
+            <p>Make sure the eggs do not scramble by stirring the pasta off the heat. Use fresh Parmesan for the best flavor.</p>
+
+            <a href="{{ url_for('recipe_routes.recipes') }}">
+                <button class="back-btn">Back to Recipes</button>
+            </a>                       
+        </section>
+
+        <!-- Comments Section -->
+        <section class="recipe-feedback">
+            <div class="comments">
+                <h3>Comments</h3>
+                <div id="comment-section">
+                    <div class="comment-item">
+                        <strong>Alice</strong>: "Tried this for dinner, and it was a hit!"
+                    </div>
+                    <div class="comment-item">
+                        <strong>Bob</strong>: "I love this recipe, but I used turkey bacon instead."
+                    </div>
+                    <!-- Add more comments dynamically -->
+                </div>
+
+                <!-- Comment Input -->
+                <div class="comment-input">
+                    <h4>Leave a Comment</h4>
+                    <textarea id="comment-text" placeholder="Write your comment here..."></textarea>
+                    <button class="comment-btn" id="submit-comment">Submit Comment</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Recipe Book</p>
+    </footer>
+
+    <script src="rb.js"></script>
+    <script>
+        // Like Button Functionality
+        document.getElementById('like-btn').addEventListener('click', function () {
+            const likeCount = document.getElementById('like-count');
+            let currentLikes = parseInt(likeCount.innerText);
+            currentLikes += 1;
+            likeCount.innerText = currentLikes;
+        });
+
+        // Comment Submission Functionality
+        document.getElementById('submit-comment').addEventListener('click', function () {
+            const commentText = document.getElementById('comment-text').value;
+            if (commentText.trim()) {
+                const newComment = document.createElement('div');
+                newComment.classList.add('comment-item');
+                newComment.innerHTML = `<strong>You</strong>: ${commentText}`;
+
+                document.getElementById('comment-section').appendChild(newComment);
+                document.getElementById('comment-text').value = ''; // Clear the input field
+            }
+        });
+
+        // Calculate average rating and display as stars
+        function calculateRating(rating, totalReviews) {
+            const averageRating = rating / totalReviews;
+            const starContainer = document.getElementById('stars');
+            starContainer.innerHTML = ''; // Clear stars
+
+            for (let i = 1; i <= 5; i++) {
+                const star = document.createElement('span');
+                star.classList.add('star');
+                if (i <= Math.floor(averageRating)) {
+                    star.textContent = '★'; // Full star
+                } else if (i === Math.ceil(averageRating) && averageRating % 1 !== 0) {
+                    star.textContent = '☆'; // Half star (optional: add custom styling)
+                } else {
+                    star.textContent = '☆'; // Empty star
+                }
+                starContainer.appendChild(star);
+            }
+        }
+
+        // Sample average rating data
+        const totalRating = 44; // Sum of all review ratings
+        const totalReviews = 10;
+
+        // Initialize the star rating display
+        calculateRating(totalRating, totalReviews);
+    </script>
+</body>
+</html>

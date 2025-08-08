@@ -1,0 +1,28 @@
+recipe-detail.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ recipe.name }}</title>
+</head>
+<body>
+    <h1>{{ recipe.name }}</h1>
+    <p><strong>Description:</strong> {{ recipe.description }}</p>
+
+    <h2>Ingredients</h2>
+    <ul>
+        {% for ingredient in recipe.ingredients %}
+        <li>{{ ingredient }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Instructions</h2>
+    <ol>
+        {% for step in recipe.instructions %}
+        <li>{{ step }}</li>
+        {% endfor %}
+    </ol>
+</body>
+</html>

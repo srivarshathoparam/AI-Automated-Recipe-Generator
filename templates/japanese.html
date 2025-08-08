@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Recipes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rb.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Japanese Recipes</h1>
+        <nav>
+            <a href="{{ url_for('recipe_routes.homepage') }}">Home</a>
+            <a href="{{ url_for('recipe_routes.recipes') }}">Recipes</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="recipe-section">
+            <h2>Featured Recipes</h2>
+            <div class="recipe-container">
+                <div class="recipe-card">
+                    <img src="/static/images/sushi.jpg" alt="Sushi">
+                    <h3>Sushi</h3>
+                    <p>Vinegared rice rolled with seafood, vegetables, and seaweed.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <div class="recipe-card">
+                    <img src="/static/images/ramen.jpg" alt="Ramen">
+                    <h3>Ramen</h3>
+                    <p>Japanese noodle soup with rich broth, meat, and vegetables.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <div class="recipe-card">
+                    <img src="/static/images/tempura.jpg" alt="Tempura">
+                    <h3>Tempura</h3>
+                    <p>Lightly battered and deep-fried seafood and vegetables.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/js/rb.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brunch Recipes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rb.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Brunch Recipes</h1>
+        <nav>
+            <li><a href="{{ url_for('recipe_routes.homepage') }}">Home</a></li>
+            <li><a href="{{ url_for('recipe_routes.recipes') }}">Recipes</a></li>
+    </header>
+
+    <main>
+        <section id="brunch" class="recipe-section">
+            <h2>Featured Recipes</h2>
+            <div class="recipe-container">
+                <!-- Brunch Recipes -->
+                <div class="recipe-card">
+                    <img src="eggs-benedict.jpg" alt="Eggs Benedict">
+                    <h3>Eggs Benedict</h3>
+                    <p>A classic brunch dish with poached eggs and hollandaise sauce.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <div class="recipe-card">
+                    <img src="french-toast.jpg" alt="French Toast">
+                    <h3>French Toast</h3>
+                    <p>Deliciously fluffy French toast with your favorite toppings.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <div class="recipe-card">
+                    <img src="quiche.jpg" alt="Quiche">
+                    <h3>Quiche</h3>
+                    <p>A savory quiche with a variety of fillings and a flaky crust.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <div class="recipe-card">
+                    <img src="pancakes.jpg" alt="Pancakes">
+                    <h3>Pancakes</h3>
+                    <p>Fluffy and delicious pancakes, perfect for a late breakfast.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <!-- <div class="recipe-card">
+                    <img src="smoothie-bowl.jpg" alt="Smoothie Bowl">
+                    <h3>Smoothie Bowl</h3>
+                    <p>A refreshing smoothie bowl with granola and fresh fruit.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div> -->
+            </div>
+
+            <!-- <h2>Explore More</h2>
+            <div class="recipe-container">              
+                <a href="breakfast.html" class="meal-type-card">
+                    <img src="breakfast.jpg" alt="Breakfast">
+                    <h3>Breakfast</h3>
+                </a>
+                <a href="lunch.html" class="meal-type-card">
+                    <img src="lunch.jpg" alt="Lunch">
+                    <h3>Lunch</h3>
+                </a>
+                <a href="dinner.html" class="meal-type-card">
+                    <img src="dinner.jpg" alt="Dinner">
+                    <h3>Dinner</h3>
+                </a>
+                <a href="desserts.html" class="meal-type-card">
+                    <img src="desserts.jpg" alt="Desserts">
+                    <h3>Desserts</h3>
+                </a>
+                <a href="snacks.html" class="meal-type-card">
+                    <img src="snacks.jpg" alt="Snacks">
+                    <h3>Snacks</h3>
+                </a>
+            </div> -->
+        </section>
+    </main>
+
+    <!-- <footer>
+        <p>&copy; 2024 My Recipe Book</p>
+    </footer> -->
+
+    <script src="/static/js/rb.js"></script>
+</body>
+</html>

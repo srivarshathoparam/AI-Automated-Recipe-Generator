@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>French Recipes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rb.css') }}">
+</head>
+<body>
+    <header>
+        <h1>French Recipes</h1>
+        <nav>
+            <a href="{{ url_for('recipe_routes.homepage') }}">Home</a>
+            <a href="{{ url_for('recipe_routes.recipes') }}">Recipes</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="recipe-section">
+            <h2>Featured Recipes</h2>
+            <div class="recipe-container">
+                <div class="recipe-card">
+                    <img src="/static/images/ratatouille.jpg" alt="Ratatouille">
+                    <h3>Ratatouille</h3>
+                    <p>Hearty vegetable stew made with tomatoes, zucchini, and eggplant.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <div class="recipe-card">
+                    <img src="/static/images/coq-au-vin.jpg" alt="Coq au Vin">
+                    <h3>Coq au Vin</h3>
+                    <p>Chicken braised with wine, mushrooms, onions, and bacon.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+                <div class="recipe-card">
+                    <img src="/static/images/crepes.jpg" alt="Crepes">
+                    <h3>Crepes</h3>
+                    <p>Thin French pancakes filled with sweet or savory ingredients.</p>
+                    <button class="recipe-btn">View Recipe</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/js/rb.js"></script>
+</body>
+</html>

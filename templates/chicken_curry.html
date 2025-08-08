@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chicken Curry Recipe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rb.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Chicken Curry Recipe</h1>
+        <nav>
+            <a href="{{ url_for('recipe_routes.homepage') }}">Home</a>
+            <a href="{{ url_for('recipe_routes.recipes') }}">Recipes</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="recipe-details">
+            <img src="{{ url_for('static', filename='images/stir..fry.jpg') }}" alt="Chicken Curry">
+            <div class="feedback-section">
+                <div class="likes">
+                    <button class="like-btn" id="like-btn">
+                        <span id="like-count">30</span> Likes
+                    </button>
+                </div>
+                <div class="reviews">
+                    <div class="average-rating">
+                        <span>Average Rating: </span>
+                        <span id="stars"></span>
+                    </div>
+                    <div id="review-count">Based on 18 reviews</div>
+                </div>
+            </div>
+
+            <h2>Chicken Curry</h2>
+            <p>This flavorful chicken curry is rich with aromatic spices and a creamy tomato-based sauce. Serve it with rice or naan for a delicious meal!</p>
+
+            <h3>Ingredients</h3>
+            <ul>
+                <li>500g chicken (boneless or bone-in)</li>
+                <li>2 onions, finely chopped</li>
+                <li>2 tomatoes, pureed</li>
+                <li>1/2 cup yogurt or coconut milk</li>
+                <li>2 tbsp oil</li>
+                <li>1 tsp cumin seeds</li>
+                <li>1 tbsp ginger-garlic paste</li>
+                <li>1 tsp turmeric powder</li>
+                <li>1.5 tsp coriander powder</li>
+                <li>1 tsp red chili powder</li>
+                <li>1 tsp garam masala</li>
+                <li>Salt to taste</li>
+                <li>Fresh cilantro for garnish</li>
+            </ul>
+
+            <h3>Instructions</h3>
+            <ol>
+                <li>Heat oil in a pan and add cumin seeds. Once they splutter, add chopped onions and sauté until golden brown.</li>
+                <li>Add ginger-garlic paste and cook for a minute. Then add turmeric, coriander, and chili powder.</li>
+                <li>Stir in tomato puree and cook until oil separates from the masala.</li>
+                <li>Add chicken and mix well. Cook for 5–7 minutes until slightly browned.</li>
+                <li>Add yogurt or coconut milk, cover, and simmer until chicken is fully cooked and tender.</li>
+                <li>Sprinkle garam masala, stir, and simmer for another 2–3 minutes.</li>
+                <li>Garnish with fresh cilantro and serve hot with rice or naan.</li>
+            </ol>
+
+            <h3>Tips</h3>
+            <p>Marinate chicken in yogurt and spices for 30 minutes for deeper flavor. Adjust spice level to your taste.</p>
+
+            <a href="{{ url_for('recipe_routes.recipes') }}">
+                <button class="back-btn">Back to Recipes</button>
+            </a>
+        </section>
+
+        <section class="recipe-feedback">
+            <div class="comments">
+                <h3>Comments</h3>
+                <div id="comment-section">
+                    <div class="comment-item"><strong>Ravi</strong>: "Tastes just like my mom's curry—so nostalgic!"</div>
+                    <div class="comment-item"><strong>Sarah</strong>: "Perfect with basmati rice. Loved it!"</div>
+                </div>
+                <div class="comment-input">
+                    <h4>Leave a Comment</h4>
+                    <textarea id="comment-text" placeholder="Write your comment here..."></textarea>
+                    <button class="comment-btn" id="submit-comment">Submit Comment</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer><p>&copy; 2024 My Recipe Book</p></footer>
+
+    <script src="rb.js"></script>
+    <script>
+        document.getElementById('like-btn').addEventListener('click', () => {
+            const likeCount = document.getElementById('like-count');
+            likeCount.innerText = parseInt(likeCount.innerText) + 1;
+        });
+
+        document.getElementById('submit-comment').addEventListener('click', () => {
+            const text = document.getElementById('comment-text').value;
+            if (text.trim()) {
+                const newComment = document.createElement('div');
+                newComment.classList.add('comment-item');
+                newComment.innerHTML = `<strong>You</strong>: ${text}`;
+                document.getElementById('comment-section').appendChild(newComment);
+                document.getElementById('comment-text').value = '';
+            }
+        });
+
+        const totalRating = 85;
+        const totalReviews = 18;
+
+        function calculateRating(rating, totalReviews) {
+            const averageRating = rating / totalReviews;
+            const stars = document.getElementById('stars');
+            stars.innerHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const star = document.createElement('span');
+                star.textContent = i <= Math.floor(averageRating) ? '★' : '☆';
+                stars.appendChild(star);
+            }
+        }
+
+        calculateRating(totalRating, totalReviews);
+    </script>
+</body>
+</html>

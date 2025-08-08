@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        /* General Page Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #d86a8f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+        }
+
+        main {
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form label {
+            font-size: 16px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        form input, form textarea, form select {
+            font-size: 16px;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        form button:hover {
+            background-color: #45a049;
+        }
+
+        form .cancel-btn {
+            background-color: #f24981;
+            margin-top: 10px;
+        }
+
+        form .cancel-btn:hover {
+            background-color: #f24981;
+        }
+
+        section.profile-section {
+            margin-bottom: 20px;
+        }
+
+        .profile-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-pic-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-pic-label {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .profile-pic-input {
+            flex: 2;
+        }
+
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            text-align: center;
+        }
+
+        .profile-info h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .profile-info p {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            main {
+                padding: 20px;
+            }
+
+            form input, form textarea, form select {
+                font-size: 14px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 10px;
+            }
+
+            nav a {
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Profile</h1>
+            <!-- <nav>
+                <li><a href="{{ url_for('recipe_routes.homepage') }}">Home</a></li>
+                <li><a href="{{ url_for('recipe_routes.recipes') }}">Recipes</a></li>
+                <li><a href="{{ url_for('recipe_routes.ingredients') }}">Ingredients</a></li>
+                <a href="profile.html">Profile</a>
+                <a href="{{ url_for('auth_routes.login') }}">Login</a>
+            </nav> -->
+        </div>
+    </header>
+
+    <main>
+        <section class="profile-section">
+            <form id="profile-form" method="POST" action="updateProfile">
+                <!-- Profile Picture -->
+                <div class="profile-pic-container">
+                    <label for="profile-pic-input" class="profile-pic-label">Upload Profile Picture:</label>
+                    <input type="file" id="profile-pic-input" name="profilePic" accept="image/*" class="profile-pic-input">
+                </div>                
+
+                <!-- User Information -->
+                <div class="user-info">
+                    <h2>Update Your Details</h2>
+
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                    <label for="member-since">Member Since:</label>
+                    <input type="text" id="member-since" name="memberSince" value="January 2024" disabled>
+                </div>
+
+                <!-- User Feedback Section -->
+                <div class="feedback-section">
+                    <h3>Your Feedback</h3>
+                    <label for="feedbacks">Provide Feedback on Your Favorite Recipes:</label>
+                    <textarea id="feedbacks" name="feedbacks" rows="4" placeholder="Enter your feedback here..."></textarea>
+                </div>
+
+                <!-- Allergies Section -->
+                <div class="allergies-section">
+                    <h3>Your Allergies</h3>
+                    <label for="allergies">List Your Allergies (comma separated):</label>
+                    <input type="text" id="allergies" name="allergies" placeholder="E.g., Peanuts, Dairy">
+                </div>
+
+                <!-- Tasty Recipes Section -->
+                <div class="tasty-recipes-section">
+                    <h3>Your Favorite Recipes</h3>
+                    <label for="favorite-recipes">Add Your Favorite Recipes (comma separated):</label>
+                    <input type="text" id="favorite-recipes" name="favoriteRecipes" placeholder="E.g., Tomato Soup, Chicken Curry">
+                </div>
+
+                <!-- Submit Button -->
+                <div class="submit-section">
+                    <button type="submit">Update Profile</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Recipe Book</p>
+    </footer>
+
+    <script>
+        // Handle form submission
+        document.getElementById('profile-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const token = localStorage.getItem('token'); // assuming token is stored after login
+
+            const data = {
+                username: document.getElementById('username').value,
+                email: document.getElementById('email').value,
+                feedbacks: document.getElementById('feedbacks').value,
+                allergies: document.getElementById('allergies').value.split(',').map(a => a.trim()),
+                favoriteRecipes: document.getElementById('favorite-recipes').value.split(',').map(r => r.trim())
+            };
+
+            fetch('/updateProfile', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(response => {
+                alert('Profile updated successfully!');
+                window.location.href = 'profile.html';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to update profile.');
+            });
+        });
+
+        // Handle logout
+        document.querySelector('.logout-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.clear(); // Clear session data
+            window.location.href = 'login.html'; // Redirect to login page
+        });
+    </script>
+</body>
+</html>
